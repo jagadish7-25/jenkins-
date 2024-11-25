@@ -17,6 +17,14 @@ pipeline {
                 sh 'exit 0' // Simulate success
             }
         }
+        stage('prod'){
+            steps{
+                sh '''
+                  netstat -lntp
+                  pwd
+                  '''
+            }
+        }
     }
     post {
         always {
