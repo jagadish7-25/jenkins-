@@ -4,20 +4,25 @@ pipeline {
     }
 
     stages {
-        stage('build-1') {
+        stage('build-2') {
             steps {
                 sh " echo this is build"
             }
         }
-        stage ("test"){
+        stage ("test-2"){
             steps{
                 sh " echo this code-test"
 
             }
         }
-        stage("deploy"){
+        stage("deploy-2"){
             steps{
                 sh "echo this code-test"
+            }
+        }
+        stage("prod"){
+            steps{
+                sh "echo this prod"
             }
         }
     }
