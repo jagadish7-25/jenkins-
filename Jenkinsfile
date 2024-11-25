@@ -4,20 +4,33 @@ pipeline {
     }
 
     stages {
-        stage('Installing docker') {
+        stage('build') {
             steps {
-                script{
-                    sh """
-                    sudo dnf -y install dnf-plugins-core
-                    sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-                    sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-                    sudo systemctl start docker
-                    sudo systemctl enable docker 
-                    """
-
-                }
-                
+                sh " echo this is build"
             }
+        }
+        stage ("test"){
+            steps{
+                sh " echo this code-test"
+
+            }
+        }
+        stage("deploy"){
+            steps{
+                sh "echo this code-test"
+            }
+        }
+    }
+    post {
+        always {
+            echo "this section run always"
+            deletedir()
+        }
+        success{
+            echo " this jenkins file is successs"
+        }
+        faliure{
+            echo " this jenkins file is failure"
         }
     }
 }
