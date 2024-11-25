@@ -2,41 +2,37 @@ pipeline {
     agent {
         label "agent-1"
     }
-
     stages {
-        stage('build-2') {
+        stage('Build') {
             steps {
-                sh " echo this is build"
+                echo 'Building the project...'
+                // Simulating a build step
+                sh 'exit 0' // Simulate success; change to 'exit 1' to test failure
             }
         }
-        stage ("test-3"){
-            steps{
-                sh " echo this code-test"
-
-            }
-        }
-        stage("deploy-2"){
-            steps{
-                sh "echo this code-test"
-            }
-        }
-        stage("prod"){
-            steps{
-                sh "echo this prod"
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // Simulating a test step
+                sh 'exit 0' // Simulate success
             }
         }
     }
-    
     post {
         always {
-            echo "this section run always"
-            deletedir()
+            echo 'Cleaning up resources...'
         }
-        success{
-            echo " this jenkins file is successs"
+        success {
+            echo 'Pipeline completed successfully!'
         }
-        faliure{
-            echo " this jenkins file is failure"
+        failure {
+            echo 'Pipeline failed. Please check the logs.'
+        }
+        unstable {
+            echo 'Pipeline is unstable. Please review warnings.'
+        }
+        aborted {
+            echo 'Pipeline was aborted by the user.'
         }
     }
 }
