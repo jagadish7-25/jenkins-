@@ -9,7 +9,7 @@ pipeline {
                 sh " echo this is build"
             }
         }
-        stage ("test-2"){
+        stage ("test-3"){
             steps{
                 sh " echo this code-test"
 
